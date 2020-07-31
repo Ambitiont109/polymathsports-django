@@ -1,4 +1,4 @@
-# polymathsports-django([demo](http://autoszafa.autoszafa.eu/))
+# polymathsports-django([live site](http://polymathsports.com/))
 django 3.0, betting sport site, machine learing, scikit-learn
 # Running Guide
 pip install -r requirements/requirements.txt
