@@ -1,0 +1,13 @@
+{
+    "SECRET_KEY":"p(hnmphuc@u_-#q6@78m+daj=02+1$17nz80mpza3kh$#d3@6v",
+    "MAILJET_EMAIL": "admin@polymathsports.com",
+    "USER_PASS": "",
+    "STRIPE_SECRET_KEY": "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",
+    "REAL_PUBLISHER_KEY":"pk_live_sOQHF8B0r0RmsRxpwovrimMV00RMPjTiqw",
+    "PAYPAL_RECEIVER_EMAIL": "",
+    "website_url":"polymathsports.com",
+    "notify_url":"",
+    "return_url":"",
+    "cancel_url":""
+    
+}

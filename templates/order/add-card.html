@@ -1,0 +1,118 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}
+<title>Polymath Sports :: Add Cart</title>
+{% endblock %}
+{% block content %}
+<main class="st-wrapper">
+	{% include 'partials/main_header.html'%}
+		<article class="main-content">
+			<section class="usermodule-sec">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="outer-wrapper">
+								<div class="row">
+									<div class="col-lg-7 col-md-8 col-sm-12 col-12 m-auto">
+										<div class="inner-sec">
+											<div class="head-sec">
+												<h1>Add Card</h1>
+												
+												<div class="card-icon">
+													<span class="icon-top"><img src="{% static 'images/visa.png' %}" alt=""></span>
+													<span class="icon-top"><img src="{% static 'images/mastercard.png' %}" alt=""></span>
+													<span class="icon-top"><img src="{% static 'images/credit-card.png' %}" alt=""></span>
+												</div>
+											</div>
+											<div class="body-sec">
+												<form id="add-card" method="POST" action="{% url 'add-card' %}">
+													{% csrf_token %}
+													<div class="form-group row">
+														<label class="col-lg-4 col-md-4 col-sm-4 col-12 col-form-label">Cardholder Name</label>
+														<div class="col-lg-8 col-md-8 col-sm-8 col-12">
+															<input type="text" id="name" class="form-control" name="name" value="" required placeholder="Cardholder Name">
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-lg-4 col-md-4 col-sm-4 col-12 col-form-label">Card Number</label>
+														<div class="col-lg-8 col-md-8 col-sm-8 col-12">
+															<input type="text" pattern="\d*" maxlength="16" minlength="16" title="must be numeric 16 digit" id="card-number" class="form-control" name="card-number" value="" required placeholder="Card Number">
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-lg-4 col-md-4 col-sm-4 col-12 col-form-label">Expiration Date</label>
+														<div class="col-lg-8 col-md-8 col-sm-8 col-12">
+															<input type="date" id="expiry-date" class="form-control" name="expiry-date" value="" required placeholder="Expiration Date">
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-lg-4 col-md-4 col-sm-4 col-12 col-form-label">CVV</label>
+														<div class="col-lg-8 col-md-8 col-sm-8 col-12">
+															<input type="text" pattern="\d*" maxlength="4" minlength="3" title="must be numeric 3 digit" id="cvv" class="form-control" name="cvv" value="" required placeholder="CVV">
+														</div>
+													</div>
+													<div class="form-group row justify-content-center">
+														<div class="col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+															<input type="submit" class="btn btn-primary btn-st" value="Save">
+														</div>
+													</div>
+												</form>
+												{% include 'partials/messages.html' %}
+												<div class="bottom-sec">
+													{% for card in cards %}
+													<div class="payment-card">
+														<div class="row">
+															<div class="col-lg-10 col-md-10 col-sm-10 col-12">
+																<div class="text-wrapper">
+<!--																	<p>XXXX XXXX XXXX 1234</p>-->
+
+																	<p>XXXX XXXX XXXX {{card.card_number | slice:"12:16"}}</p>
+																	<p>{{card.expiry_date|date:"d-m-Y"}}</p>
+																</div>
+															</div>
+															<div class="col-lg-2 col-md-2 col-sm-2 col-12">
+																<div class="img-wrapper">
+																	<img src="{% static 'images/visa.png' %}">
+																</div>
+															</div>
+														</div>
+														<span class="cross-btn">
+															<a href="{% url 'remove-card' %}?card-id={{card.id}}"><i class="fa fa-times" aria-hidden="true"></i></a>
+														</span>
+													</div>
+													{% endfor %}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!--/.usermodule-sec-->
+		</article><!--/.article-->
+	{% include 'partials/footer.html' %}
+	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+	<script>
+		// $(selector).inputmask("");  //static mask
+		// // $(selector).inputmask({"mask": "(999) 999-9999"}); //specifying options
+		// $(selector).inputmask("9-a{1,3}9{1,3}"); //mask with dynamic syntax
+	$(document).ready(function() {
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0!
+		var yyyy = today.getFullYear();
+		 if(dd<10){
+				dd='0'+dd
+			}
+			if(mm<10){
+				mm='0'+mm
+			}
+		today = yyyy+'-'+mm+'-'+dd;
+		document.getElementById("expiry-date").setAttribute("min", today);
+		console.log(today);
+	});
+	</script>
+	</main>
+{% endblock %}

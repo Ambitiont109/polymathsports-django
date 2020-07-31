@@ -1,0 +1,5 @@
+Running database load main
+inside nfl
+inside nba
+inside ncaaf
+inside ncaab

@@ -1,0 +1,27 @@
+{% extends 'layout/base.html' %}
+{% load static%}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}
+    <title>{% trans 'Page Not found' %}</title>
+{% endblock %}
+
+{% block content %}
+<main class="st-wrapper">
+	{% include 'partials/main_header.html'%}
+        <article class="main-content">
+			<section class="usermodule-sec">
+				<div class="container">
+                    <div class="row justify-content-center align-items-center">
+                        <h2>{% trans 'Not Found' %}</h2>
+                    </div>
+                    <div class="row justify-content-center align-items-center">
+                        <p class="text--center">{% blocktrans %}The requested URL <code>{{ request_path }}</code> was not found on this server.{% endblocktrans %}</p>
+                    </div>
+                </div>
+            </section>
+        </article>
+{% include 'partials/footer.html' %}
+</main>
+{% endblock %}

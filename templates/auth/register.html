@@ -1,0 +1,134 @@
+{% extends 'layout/base.html' %}
+{% load static%}
+{% block title %}
+<title>Polymath Sports :: Register</title>
+{% endblock %}
+
+{% block content %}
+	<main class="st-wrapper">
+		<!-- {{user_data}} -->
+		{% include 'partials/main_header.html'%}
+		<article class="main-content">
+			<section class="usermodule-sec">
+				<div class="container">
+					{% include 'partials/messages.html' %}
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="outer-wrapper">
+								<div class="row">
+									<div class="col-lg-7 col-md-8 col-sm-12 col-12 m-auto">
+										<div class="inner-sec">
+											<div class="head-sec">
+												<h1>Register</h1>
+											</div>
+											<div class="body-sec">
+												<form id="user-register" class="" name="" method="POST" action="/register">
+													{% csrf_token %}
+													<div class="form-group row">
+														<label class="col-lg-4 col-md-4 col-sm-4 col-12 col-form-label">Name<sup>*</sup></label>
+														<div class="col-lg-8 col-md-8 col-sm-8 col-12">
+															<input type="text" id="name" class="form-control" name="name" value="{{name}}" placeholder="Enter your Name">
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-lg-4 col-md-4 col-sm-4 col-12 col-form-label">Email <sup>*</sup></label>
+														<div class="col-lg-8 col-md-8 col-sm-8 col-12">
+															<input type="email" id="email" class="form-control" name="email" value="{{email}}" placeholder="Enter Email">
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-lg-4 col-md-4 col-sm-4 col-12 col-form-label">Password <sup>*</sup></label>
+														<div class="col-lg-8 col-md-8 col-sm-8 col-12 input-group">
+															<input type="password" id="password" class="form-control" name="password" value="" placeholder="Enter Password">
+															<div class="input-group-append">
+																<button class="btn btn-default pass" type="button"><i class="fa fa-eye toggle-password" aria-hidden="true"></i></button>
+															</div>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-lg-4 col-md-4 col-sm-4 col-12 col-form-label">Confirm Password <sup>*</sup></label>
+														<div class="col-lg-8 col-md-8 col-sm-8 col-12 input-group">
+															<input type="password" id="cpassword" class="form-control" name="password_again" value="" placeholder="Confirm Password">
+															<div class="input-group-append">
+																<button class="btn btn-default cpass" type="button"><i class="fa fa-eye toggle-password" aria-hidden="true"></i></button>
+															</div>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-lg-4 col-md-4 col-sm-4 col-12 col-form-label">Twitter Handle</label>
+														<div class="col-lg-8 col-md-8 col-sm-8 col-12">
+															<input type="text" id="twitter" class="form-control" name="twitter" value="{{twitter}}" placeholder="@johndoe12345">
+														</div>
+													</div>
+													<div class="form-group row">
+														<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+															<h6>Subscription Plans</h6>
+														</div>
+														{% for plan in plans %}
+														<div class="col-lg-2 col-md-2 col-sm-3 col-6 form-check-inline">
+															<label class="form-check-label">
+																<input class="form-check-input" type="radio" name="Subscription-Plans" value="{{plan.id}}">
+																	<span class="outer-box">
+																		<span class="inner-box">
+																			<span>{{plan.name}}</span>
+																			<span class="price">${% widthratio plan.amount 100 1 %}</span>
+																		</span>
+																	</span>
+															</label>
+														</div>
+														{% empty %}
+															<p> Please add plan from Admin </p>
+														{% endfor %}
+													</div>
+													<div class="form-group row align-items-center form-check">
+														<label class="col-lg-12 col-md-12 col-sm-12 col-12 form-check-label">
+<!--															<input class="form-check-input" type="checkbox">-->
+															<input type="checkbox" id="termsConditions" required class="required form-check-input" name="terms_conditions"/>
+															<span class="custom-checkbox"></span>
+															I agree to the <a href="{% url 'terms-and-conditions' %}" target="_blank">Terms & Conditions</a> and <a href="{% url 'privacy-policy' %}" target="_blank">Privacy Policy</a>
+														</label>
+													</div>
+													<div class="form-group row justify-content-center">
+														<div class="col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+															<input type="submit" class="btn btn-primary btn-st" value="Continue">
+														</div>
+													</div>
+												</form>
+												<div class="row">
+													<div class="col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+														<div class="form-link text-center">
+															Already have an account? <a href="/login">Login</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!--/.usermodule-sec-->
+		</article><!--/.article-->
+		{% include 'partials/footer.html' %}
+	</main>
+<!-- Custom Script Include Here -->
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".toggle-password").click(function() {
+		  $(this).toggleClass("fa-eye fa-eye-slash");
+		  var input = $($(this).attr("toggle"));
+		  if (input.attr("type") == "password") {
+		    input.attr("type", "text");
+		  } else {
+		    input.attr("type", "password");
+		  }
+		});
+		// Banner Window Height
+		$('.banner-sec').css({'height': ($(window).height()) + 'px'});
+	});
+
+</script>
+{% endblock %}

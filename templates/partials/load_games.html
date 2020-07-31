@@ -1,0 +1,17 @@
+<h4>Select your Games</h4>
+
+{% for game in games %}
+<div>
+    <input class="form-check-input btn ml-1" name = 'game_id' type="checkbox" id = "game_id" value="{{ game }}" >
+    <span class="ml-4" id="game_id">{{ game.date }} {{ game }}</span>
+</div>
+{% endfor %}
+
+{% if plan == 'OK' %}
+    <br>
+    <div  class="form-group mb-4" id="select_all" >
+        <input class="form-check-input btn ml-1" name = 'select_all'type="checkbox" id = "select_all" value="Select All games" >
+        <option class="ml-4" id="select all">Select All</option>
+                                                                    
+    </div>
+{% endif %}

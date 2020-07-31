@@ -1,0 +1,110 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<body>
+    <div class="container">
+        <h1>Stripe Accounts Managment</h1>
+        <div class="card-body">
+        <h2>Current Accounts</h2>
+        <table class="table" border="1">
+            <thead>
+                <th>
+                    Plan ID
+                </th>
+                <th>
+                    Active
+                </th>
+                <th>
+                    Currency
+                </th>
+                <th>
+                    Amount
+                </th>
+                <th>
+                    Interval
+                </th>
+            </thead>
+            <tbody>
+                {% for plan in stripe_plans %}
+                <tr>
+                    <td>
+                        {{ plan.id }}
+                    </td>
+                    <td>
+                        {{ plan.active }}
+                    </td>
+                    <td>
+                        {{ plan.currency }}
+                    </td>
+                    <td>
+                        {{ plan.amount }}
+                    </td>
+                    <td>
+                        {{ plan.interval }}
+                    </td>
+    
+                </tr>
+            {% endfor %}    
+            </tbody>
+        </table>
+    </div>
+
+    
+        <h2>Create New Plan</h2>
+        <div class="card">
+            <form enctype="multipart/form-data" method="POST" action="">{% csrf_token %}
+                <div class="input" >
+                    Subscription Name: <input name="subs_name" type="text">
+                </div>
+                <div class="input" >
+                    Interval (day, week, month, year): <input name="subs_interval" type="text" >
+                </div>
+                <div class="input" >
+                    Amount: <input name="subs_amount" type="text" >
+                </div>
+                <div class="border-top">
+                    <input type="submit" name="add_plan" class="btn btn-danger" value="Add Plan">
+                </div>
+            </form>
+        </div>
+
+        <div class="mt-4">
+            <h2>Delete Plan</h2>
+            <div class="card">
+                <form enctype="multipart/form-data" method="POST" action="">{% csrf_token %}
+                    <div class="input" >
+                        Plan ID (Get from Admin): <input id="delete_id" name="delet_plan_id"  type="text">
+                    </div>
+                    <div class="border-top">
+                        <button id="delet_plan_id_submit" name="delete_plan" class="btn btn-danger">Delete Plan</button>
+                    </div>
+                </form>
+            </div>
+    
+        </div>
+
+        
+    </div>
+    <script>
+        $('#delet_plan_id_submit').click(function(e){
+            var value = $("#delete_id").val();
+            var url = '{% url "manage_stripe_delete" %}';
+            var token = '{{csrf_token}}';
+            $.ajax({
+                headers: { "X-CSRFToken": token },
+                method: 'POST',
+                url: url,
+                data: {
+                    'value': value
+                },
+                success: function(data) {
+                    if(data == 'Ok') {
+                        window.location.href = '{% url "manage_stripe" %}';
+                        window.location.reload();
+                    }
+                }
+            });
+        });
+    </script>
+
+{% endblock %}

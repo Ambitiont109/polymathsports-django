@@ -1,0 +1,26 @@
+{% extends 'layout/base.html' %}
+{% load static%}
+{% load i18n %}
+{% block title %}
+<title>{% trans 'Bad Request (400)' %}</title>
+{% endblock %}
+
+{% block content %}
+<main class="st-wrapper">
+	{% include 'partials/main_header.html'%}
+        <article class="main-content">
+			<section class="usermodule-sec">
+				<div class="container">
+                    <div class="row justify-content-center align-items-center">
+                        <h2>{% trans 'Bad Request (400)' %}</h2><br>
+                    </div>
+                    <div class="row justify-content-center align-items-center">
+                        <p class="text--center">{% trans 'The request cannot be fulfilled due to bad syntax.' %}</p>
+
+                    </div>
+                </div>
+            </section>
+        </article>
+{% include 'partials/footer.html' %}
+</main>
+{% endblock %}

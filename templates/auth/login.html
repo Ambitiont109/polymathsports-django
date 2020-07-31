@@ -1,0 +1,87 @@
+{% extends 'layout/base.html' %}
+{% load static%}
+{% block title %}
+<title>Polymath Sports :: Login</title>
+{% endblock %}
+{% block content %}
+	<main class="st-wrapper">
+		{% include 'partials/main_header.html'%}
+		<article class="main-content">
+			<section class="usermodule-sec">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="outer-wrapper">
+								<div class="row">
+									<div class="col-lg-6 col-md-7 col-sm-12 col-12 m-auto">
+										<div class="inner-sec">
+											<div class="head-sec">
+												<h1>Login</h1>
+											</div>
+											<div class="body-sec">
+												{% include 'partials/messages.html' %}
+												<form id="" class="" name="" method="POST" action="/login">
+													{% csrf_token %}
+													<div class="form-group row">
+														<label class="col-lg-3 col-md-3 col-sm-3 col-12 col-form-label">Email</label>
+														<div class="col-lg-9 col-md-9 col-sm-9 col-12">
+															{% if 'username' in request.COOKIES %}
+																<input type="email" id="" class="form-control" name="email" value= "{{request.COOKIES.username}}" placeholder="Enter Email Address">
+															{%else%}
+																<input type="email" id="" class="form-control" name="email" value="{{email}}" placeholder="Enter Email Address">
+															{%endif%}
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-lg-3 col-md-3 col-sm-3 col-12 col-form-label">Password</label>
+														<div class="col-lg-9 col-md-9 col-sm-9 col-12 input-group">
+															{% if 'password' in request.COOKIES %}
+																<input type="password" id="password" class="form-control" name="password" value="{{request.COOKIES.password}}" placeholder="Enter Password">
+															{%else%}
+																<input type="password" id="password" class="form-control" name="password" value="" placeholder="Enter Password">
+															{%endif%}
+															<div class="input-group-append">
+																<button class="btn btn-default" type="button"><i class="fa fa-eye" aria-hidden="true"></i></button>
+															</div>
+														</div>
+													</div>
+													<div class="form-group row align-items-center form-check">
+														<label class="col-lg-6 col-md-6 col-sm-6 col-12 form-check-label">
+															{% if 'username' in request.COOKIES %}
+																<input class="form-check-input" name = 'remember_me'type="checkbox" id = "remember_me" checked>
+															{%else%}
+																<input class="form-check-input" name = 'remember_me'type="checkbox" id = "remember_me" >
+															{%endif%}
+															<span class="custom-checkbox"></span>
+															Remember me
+														</label>
+														<label class="col-lg-6 col-md-6 col-sm-6 col-12 form-check-label text-right">
+															<a href="/forgot-password">Forgot Password?</a>
+														</label>
+													</div>
+													<div class="form-group row justify-content-center">
+														<div class="col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+															<input type="submit" class="btn btn-primary btn-st" value="Login">
+														</div>
+													</div>
+												</form>
+												<div class="row">
+													<div class="col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+														<div class="form-link text-center">
+															Don’t have an account? <a href="/register">Register</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!--/.usermodule-sec-->
+		</article><!--/.article-->
+	{% include 'partials/footer.html' %}
+	</main>
+{% endblock %}

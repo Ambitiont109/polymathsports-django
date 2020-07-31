@@ -1,0 +1,167 @@
+{% extends 'layout/base.html' %}
+{% load static%}
+{% block title %}
+<title>Polymath Sports :: Learning Section Video</title>
+{% endblock %}
+{% block content %}
+<main class="st-wrapper">
+	<!-- {{video}} -->
+	<!-- {% for i in video %}
+		{{i}}
+	{% endfor %} -->
+	{% include 'partials/main_header.html'%}
+		<section class="top-banner">
+			<video autoplay loop muted>
+				<source src="{% static 'videos/sample.mp4' type='video/mp4' %}">
+				<source src="images/banner.ogg" type="video/ogg">
+				Your browser does not support HTML5 video.
+			</video>
+
+			<div class="overlay">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-9 col-md-9 col-sm-12 col-12">
+							<div class="banner-caption">
+								<h2>Sports betting 101: <span>numbers are everything</span></h2>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut </p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!--/.Banner-Sec-->
+		
+		<article class="main-content">
+			<section class="videos-outer-sec">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-5 col-md-6 col-sm-12 col-12">
+							<div class="video-sec">
+								<video controls poster="/static/images/Packages-banner.png">
+									
+									{% for i in video1 %}
+										<source src="/static/videos/{{i}}" type='video/mp4'>
+									{% endfor %}
+									<!-- <source src='{% static "videos/{{video1}}" type="video/mp4" %}'> -->
+									
+									Your browser does not support HTML5 video.
+								</video>
+							</div>
+						</div>
+						<div class="col-lg-7 col-md-6 col-sm-12 col-12">
+							<div class="content-sec">
+										<!-- {{video1}} -->
+								<h6>What is a statistical sports model?</h6>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet,  adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+						</div>
+					</div>
+					<div class="row flex-row-reverse align-items-center">
+						<div class="col-lg-5 col-md-6 col-sm-12 col-12">
+							<div class="video-sec">
+								<video controls poster="/static/images/Packages-banner.png">
+									{% for i in video2 %}
+										<source src="/static/videos/{{i}}" type='video/mp4'>
+									{% endfor %}
+									
+									<source src="images/banner.ogg" type="video/ogg">
+									Your browser does not support HTML5 video.
+								</video>
+							</div>
+						</div>
+						<div class="col-lg-7 col-md-6 col-sm-12 col-12">
+							<div class="content-sec">
+								<h6>Using our tool in a few easy steps</h6>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet,  adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+						</div>
+					</div>
+					<div class="row align-items-center">
+						<div class="col-lg-5 col-md-6 col-sm-12 col-12">
+							<div class="video-sec">
+								<video controls poster="/static/images/Packages-banner.png">
+									{% for i in video3 %}
+										<source src="/static/videos/{{i}}" type='video/mp4'>
+									{% endfor %}
+									<source src="images/banner.ogg" type="video/ogg">
+									Your browser does not support HTML5 video.
+								</video>
+							</div>
+						</div>
+						<div class="col-lg-7 col-md-6 col-sm-12 col-12">
+							<div class="content-sec">
+								<h6> How can you select the best input variables?</h6>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet,  adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+						</div>
+					</div>
+					<div class="row flex-row-reverse align-items-center">
+						<div class="col-lg-5 col-md-6 col-sm-12 col-12">
+							<div class="video-sec">
+								<video controls poster="/static/images/Packages-banner.png">
+									{% for i in video4 %}
+										<source src="/static/videos/{{i}}" type='video/mp4'>
+									{% endfor %}
+									<source src="images/banner.ogg" type="video/ogg">
+									Your browser does not support HTML5 video.
+								</video>
+							</div>
+						</div>
+						<div class="col-lg-7 col-md-6 col-sm-12 col-12">
+							<div class="content-sec">
+								<h6>Using your model output to make smarter bets</h6>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet,  adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+						</div>
+					</div>
+					<div class="row align-items-center">
+						<div class="col-lg-5 col-md-6 col-sm-12 col-12">
+							<div class="video-sec">
+								<video controls poster="/static/images/Packages-banner.png">
+									{% for i in video5 %}
+										<source src="/static/videos/{{i}}" type='video/mp4'>
+									{% endfor %}
+									<source src="images/banner.ogg" type="video/ogg">
+									Your browser does not support HTML5 video.
+								</video>
+							</div>
+						</div>
+						<div class="col-lg-7 col-md-6 col-sm-12 col-12">
+							<div class="content-sec">
+								<h6>How to tell the quality of your model?</h6>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet,  adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+						</div>
+					</div>
+					<div class="row flex-row-reverse align-items-center">
+						<div class="col-lg-5 col-md-6 col-sm-12 col-12">
+							<div class="video-sec">
+								<video controls poster="/static/images/Packages-banner.png">
+									{% for i in video6 %}
+										<source src="/static/videos/{{i}}" type='video/mp4'>
+									{% endfor %}
+									<source src="images/banner.ogg" type="video/ogg">
+									Your browser does not support HTML5 video.
+								</video>
+							</div>
+						</div>
+						<div class="col-lg-7 col-md-6 col-sm-12 col-12">
+							<div class="content-sec">
+								<h6>Going from basic modeling to modeling that consistently wins</h6>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet,  adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!--/. videos-sec -->
+		</article><!--/.article-->
+		{% include 'partials/footer.html' %}
+	</main>
+<!-- Custom Script Include Here -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Banner Window Height
+		$('.banner-sec').css({'height': ($(window).height()) + 'px'});
+	});
+</script>
+{% endblock %}

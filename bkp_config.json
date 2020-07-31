@@ -1,0 +1,13 @@
+{
+    "SECRET_KEY":"p(hnmphuc@u_-#q6@78m+daj=02+1$17nz80mpza3kh$#d3@6v",
+    "MAILJET_EMAIL": "admin@polymathsports.com",
+    "USER_PASS": "",
+    "STRIPE_SECRET_KEY": "sk_live_NSejRcN7jnvcHMIYJKIixU7i00SBnNQJg2",
+    "REAL_PUBLISHER_KEY":"",
+    "PAYPAL_RECEIVER_EMAIL": "",
+    "website_url":"polymathsports.com",
+    "notify_url":"",
+    "return_url":"",
+    "cancel_url":""
+    
+}

@@ -1,0 +1,43 @@
+<div class="col-lg-4 col-md-4 col-sm-12 col-12">
+    <div class="sidebar-menu">
+        <ul>
+            <li {% if active == '1' %}  class="active {% endif %}">
+                <a href="{% url 'make-models-step-1' predict=0 %}">Select Your Game(s)</a>
+            </li>
+            <li {% if active == '2' %}  class="active {% endif %}">
+                <a href="{% url 'make-models-step-2' %}">Target Variable</a>
+            </li>
+            <li {% if active == '3' %}  class="active {% endif %}">
+                <a href="{% url 'make-models-step-3' %}">Predictor Variables</a>
+            </li>
+            <li {% if active == '4' %}  class="active {% endif %}">
+                <a href="{% url 'make-models-step-4' %}">Manipulate Your Predictor Variables</a>
+            </li>
+            <li {% if active == '5' %}  class="active {% endif %}">
+                <a href="{% url 'make-models-step-5' %}">Algorithm</a>
+            </li>
+            <li {% if active == '6' %}  class="active {% endif %}">
+                <a href="{% url 'make-models-step-6' %}">Model Results</a>
+            </li>
+            <li>
+            <li {% if active == '7' %}  class="active {% endif %}">
+                <!-- <form action="" method="POST" name="goto_predict_flow">
+                    {% csrf_token %}
+                    <input type="submit" name="goto_predict_flow" class="special_button" value="Load Other Models for Games' Predictions">
+                </form> -->
+                <a href="{% url 'make-models-step-1' predict=1 %}">Load Other Models for Games' Predictions</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<style>
+    .special_button{
+        background-color: transparent;
+        border: 0ch;
+        padding-top: 0.5rem;
+        padding-left: 0.5rem;
+    }
+    .special_button:hover{
+        cursor: pointer;
+    }
+</style>

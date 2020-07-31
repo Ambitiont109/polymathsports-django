@@ -1,0 +1,33 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+
+</head>
+<body style="padding: 0px; margin: 0px; background-color: #F7F8F9;">
+	<div class="main-wrapper" style="box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; -ms-box-sizing: border-box; display: block; width: 634px; padding: 30px 30px; background-color: #ffffff; border-radius: 2px; margin: auto;">
+		<div class="header-sec" style="padding: 15px; background-color:#111111; border-bottom: 1px solid rgba(151, 151, 151, .16);">
+			<img src="{{site_url}}{% static 'images/logo.png' %}" alt="Logo" style="max-width: 100%;">
+		</div>
+		<div class="content-sec" style="padding: 0px 15px;">
+			<h5 style="font-size: 20px; font-family: sans-serif; color: #333333; text-align: center; margin: 30px 0px;">{{ email_title }}</h5>
+			<div class="circle" style="height: 225px; width: 225px; margin: auto; margin-bottom: 15px;">
+				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjuXqngtXmv1rNogLdpCzdtz7cXqnneVmWSQu928dqNIrO7v-F0g">
+			</div>
+			<p style="font-size: 14px; font-family: sans-serif; line-height: 24px; color: rgba(19, 19, 19, .64); text-align: center; margin-top: 0; margin-bottom: 15px;">{{ email_body }} Your <b>{{ subscription }}</b> account has now been created.</p>
+		</div>
+					<p style="font-size: 14px; font-family: sans-serif; line-height: 24px; color: rgba(19, 19, 19, .64); margin-top: 30px; margin-bottom: 30px;">Hi, {{ user.first_name| default:user.username }}, Please click the button below to activate your account.</p>
+			<div class="btn-sec" style="text-align: center; margin-bottom: 30px;">
+				<a href="{{ site_url }}{% url 'activate' uidb64=uid token=token %}" style="display: inline-block; text-decoration: none; font-size: 16px; font-weight: bold; font-family: sans-serif; width: 326px; height: 56px; text-align: center; line-height: 56px; background-color:#ca312b; color: #ffffff;">Activate account</a>
+			</div>
+					<p style="font-size: 14px; font-family: sans-serif; line-height: 24px; color: rgba(19, 19, 19, .64); margin: 0px;">If it was a mistake, just ignore this email.</p>
+			<p style="font-size: 14px; font-family: sans-serif; line-height: 24px; color: rgba(19, 19, 19, .64); margin: 0px 0px 30px; 0px;">If the previous link does not work, try to copy and paste the following URL in your browser's address bar:</p>
+			<div class="link-sec" style="padding: 15px; background-color: rgba(216, 216, 216, .2); border: 1px solid rgba(151, 151, 151, .2); border-radius: 4px; word-break: break-all; margin-bottom: 30px;">
+				<a href="#" style="font-size: 14px; font-family: sans-serif; line-height: 24px; color: #ca312b; text-decoration: underline;">{{ site_url }}{% url 'activate' uidb64=uid token=token %}</a>
+			</div>
+		<div class="footer-sec" style="padding-top: 30px; border-top: 1px solid rgba(151, 151, 151, .16);">
+			<p style="font-size: 14px; text-align: center; font-family: sans-serif; line-height: 24px; color: rgba(19, 19, 19, .64); margin: 0px;">This is an automatically generated email, please do not reply.</p>
+		</div>
+	</div>
+</body>
+</html>

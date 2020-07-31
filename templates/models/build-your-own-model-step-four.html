@@ -1,0 +1,49 @@
+{% extends 'layout/base.html' %}
+{% load static%}
+{% block title %}
+<title>Polymath Sports :: Build Your Own Model</title>
+{% endblock %}
+{% block content %}
+<main class="st-wrapper">
+	{% include 'partials/main_header.html'%}
+		<article class="main-content">
+			<section class="own-model-sec">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="head-sec">
+								<h1>Build your own model</h1>
+								{% include 'partials/messages.html' %}
+							</div>
+							<div class="body-sec">
+								<div class="row">
+									
+									{% include 'partials/build_model_sidebar.html' with active='4' %}
+
+									<div class="col-lg-8 col-md-8 col-sm-12 col-12">
+										<div class="side-bar-body">
+											<div class="inner-sec">
+												<h6>Step 4</h6>
+												<h6>Manipulate your Predictor Variables</h6>
+												<p class="mb-4"> Perform logarthmic functions, square, or cube any desired varibales - (This will only been seen by VIP members</p>
+												<div class="row">
+													<div class="col" style="padding-bottom: 3rem;">
+														<a href="javascript:history.go(-1)" class="btn btn-primary btn-st">Back</a>
+													</div>
+													<div class="col">
+														<a href="{% url 'make-models-step-5' %}" class="btn btn-primary btn-st">Skip</a>	
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!--/.own-model-sec-->
+		</article><!--/.article-->
+	{% include 'partials/footer.html' %}
+	</main>
+{% endblock %}

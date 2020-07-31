@@ -1,0 +1,272 @@
+{% extends 'layout/base.html' %}
+{% load static%}
+{% block title %}
+<title>Polymath Sports :: My Model</title>
+{% endblock %}
+{% block content %}
+<main class="st-wrapper">
+	{% include 'partials/main_header.html'%}
+		<article class="main-content">
+			<section class="usermodule-sec pt-5">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="head-sec">
+								<h1 class="mb-4">Model Report</h1>
+							</div>
+							<div class="outer-wrapper">
+								<div class="row">
+                                    <h5>Model Name: {{ model.model_name }}</h5>
+								</div>
+                                <div class="row">
+                                    <h5>Sport: {{ model.model_sport }} </h5>
+                                </div>
+                                <div class="row">
+                                    <h5>Target: {{ model.model_target_variables }} </h5>
+                                </div>
+                                <div class="row" style="padding-bottom: 2rem;">
+                                    <h5>Algorithm: {{ model.model_algorithm }} </h5>
+                                </div>
+                                {% if model_type == 'classifier' %}
+                                    <div class="row" style="border-bottom: 1px solid rgb(90, 47, 47); padding-bottom:2rem">
+                                        <p>On the training yo set of data, your algorithm scored <b>{{ model.model_train_score }}</b></p>
+                                        <p>On the testing set of data your algorithm scored <b>{{ model.model_test_score }}</b>. This is what you can expect your overall future predictive accuracy to be. Try building another algorithm to see if you can beat your score and obtain even higher accuracy!</p>
+                                    </div>
+                                    <div class="row" style="border-bottom: 1px solid rgb(90, 47, 47); padding-bottom:1rem">
+                                        <b>Here is a full breakdown of your classification performance on the test set:</b>
+                                    </div>
+                                    <div class="row" style="border-bottom: 1px solid rgb(90, 47, 47); padding-bottom:2rem">
+                                        <div class="table-responsive">
+
+                                            <table class="table table-striped table-bordered">
+                                                <thead>
+                                                    <th>
+
+                                                    </th>
+                                                    <th>
+                                                        Precision
+                                                    </th>
+                                                    <th>
+                                                        Recall
+                                                    </th>
+                                                    <th>
+                                                        F1-score
+                                                    </th>
+                                                    <th>
+                                                        Support
+                                                    </th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td> {{ k1 }} </td>
+                                                        {% for k,val in val1.items %}
+                                                            <td> {{ val }} </td>
+                                                        {% endfor %}
+                                                    </tr>
+                                                    <tr>
+                                                        <td> {{ k2 }} </td>
+                                                        {% for k,val in val2.items %}
+                                                            <td> {{ val }} </td>
+                                                        {% endfor %}
+                                                    </tr>
+                                                    <tr>
+                                                        <td> {{ accuracy }} </td>
+                                                        {% for k,val in val_accuracy.items %}
+                                                            <td> {{ val }} </td>
+                                                        {% endfor %}
+                                                    </tr>
+                                                    <tr>
+                                                        <td> {{ macro_avg }} </td>
+                                                        {% for k,val in val_macro_avg.items %}
+                                                            <td> {{ val }} </td>
+                                                        {% endfor %}
+                                                    </tr>
+                                                    <tr>
+                                                        <td> {{ weighted_avg }} </td>
+                                                        {% for k,val in val_weighted_avg.items %}
+                                                            <td> {{ val }} </td>
+                                                        {% endfor %}
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="row" style="border-bottom: 1px solid rgb(90, 47, 47);">
+                                        <div class="col-lg-2" style="padding-top: 1rem;border-right: 1px solid rgb(90, 47, 47);">
+                                            {% if model.model_type == 'classifier' %}
+                                                <div class="row" >
+                                                    <p>Training Score: </p>
+                                                </div>
+                                                <div class="row">
+                                                    <p>Testing Score: </p>
+                                                </div>
+                                                <div class="row">
+                                                    <p>Parameter 3: 132.344</p>
+                                                </div>
+                                            {% else %}
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-1"></div>
+                                        <div class="col-lg-9">
+                                            <h6>Predictor Importance</h6>
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-bordered">
+                                                    <thead class="text-primary">
+                                                        <tr>
+                                                            <th>
+                                                            Index
+                                                            </th>
+                                                            <th>
+                                                                Predictor Name
+                                                            </th>
+                                                            <th>
+                                                                Relative Importance
+                                                            </th>
+                                                            <th>
+                                                                Scaled Importance [%]
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for predictor in model_predictor_variables %}
+                                                        <tr>
+                                                            <td>
+                                                                {{ forloop.counter }}
+                                                            </td>
+                                                            <td>
+                                                                {{ predictor }} 
+                                                            </td>
+                                                            <td>
+                                                                ##### 
+                                                            </td>
+                                                            <td>
+                                                                #####
+                                                            </td>
+        
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>    
+                                            </div>
+                                        </div>
+                                    </div>     -->
+                                    <div class="row">
+                                        <!-- <div class="col-sm-6" url-endpoint="{% url 'api-chart-data' %}" >
+                                            <canvas id="myChart" width="400" height="400"></canvas>
+                                        </div>
+                                        <div class="col-sm-6" id="graph">
+                                            include 'models/graph.html' 
+                                        </div>
+                                    </div>
+                                    <div class="row"> -->
+                                        <div class="col-sm-6" id="graph">
+                                            <center><h3 class='pt-5'>Confusion matrix</h3></center>
+                                            {% autoescape off %}
+                                            {{ plot_div }}
+                                            {% endautoescape %}
+                                        </div>
+                                        {% if decision_tree %}
+                                            <div class="col-sm-6" id="graph">
+                                                <center><h3 class='pt-5 pb-3'>Decision Tree</h3></center>
+                                                {% autoescape off %}
+                                                {{ plot_tree }}
+                                                {% endautoescape %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% else %}
+                                    <div class="row" style="border-bottom: 1px solid rgb(90, 47, 47); padding-bottom:2rem">
+                                        <p>On the training set of data, your algorithm explained <b>{{ model.model_train_score }}</b> % of the variance in <b>{{ model.model_target_variables }}</b>.</p>
+                                        <p>On the testing set of data your algorithm explained <b>{{ model.model_test_score }}</b>%  of the variance in <b>{{ model.model_target_variables }}</b>. <br> Good start. Try building another algorithm to see if you can beat your score and obtain even higher accuracy!</p>
+                                        <p>On the training set of data, your algorithm obtained a Mean Absolute Error (MAE) of <b>{{ model.model_train_mae }}</b>. This is how off your model is on average in terms of <b>{{ model.model_target_variables }}</b>.</p>
+                                        <p>On the testing set of data, your algorithm obtained a MeanAbsoluteError (MAE) of <b>{{ model.model_test_mae }}</b>. This is how off your model is on average in terms of <b>{{ model.model_target_variables }}</b>. <br> Good start, but you can do better than this measly MAE. Try building another algorithm to see if you can beat your score and obtain even higher accuracy!</p>
+                                    </div>
+                                {% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!--/.usermodule-sec-->
+		</article><!--/.article-->
+	{% include 'partials/footer.html' %}
+    </main>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            let graphUrl = 'graph/'
+            console.log(graphUrl)
+           
+            $('#graph').load(graphUrl);
+    
+        });
+        </script>
+    <script>
+        $(document).ready(function(){
+   
+    </script>
+
+    <script>
+        var endpoint = 'api/chart-data/'
+        var chartData = []
+        var labels = []
+        console.log(endpoint)
+        $.ajax({
+            method: 'GET',
+            url: endpoint,
+            success: function(response){ //The data is the response from the API
+                labels = response.labels
+                chartData = response.chart_data
+                drawChart(response)
+                //console.log(data)
+            },
+            error: function(error_data){
+                console.log('Error')
+                console.log(error_data)
+            }
+        })
+   
+    function drawChart(response){
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: response.chart_type,
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: response.title,
+                    data: chartData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+</script>
+
+{% endblock %}

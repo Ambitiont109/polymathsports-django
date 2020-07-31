@@ -1,0 +1,82 @@
+{% extends 'layout/base.html' %}
+{% load static%}
+{% block title %}
+<title>Polymath Sports :: Build Your Own Model</title>
+{% endblock %}
+{% block content %}
+<main class="st-wrapper">
+	{% include 'partials/main_header.html'%}
+		<article class="main-content">
+			<section class="own-model-sec">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="head-sec">
+								<h1>Build your own model</h1>
+								{% include 'partials/messages.html' %}
+							</div>
+							<div class="body-sec">
+								<div class="row">
+
+									{% include 'partials/build_model_sidebar.html' with active='5' %}
+
+									<div class="col-lg-8 col-md-8 col-sm-12 col-12">
+										<div class="side-bar-body">
+											<div class="inner-sec">
+												<h6>Step 5</h6>
+												<h6>Select Your Algorithm</h6>
+												<p>Select your algorithm you think will perform best</p>
+												<form 
+													id="algorithmSelect" 
+													class="mb-3" 
+													name="algorithmSelect" 
+													method="POST" 
+													action=""> 
+													{% csrf_token %}
+													<div class="row">
+														<div class="col-lg-9 col-md-9 col-sm-12 col-12">
+															<div class="form-group mb-4">
+																<select name="model_algorithm" id="model_algorithm" class="form-control">
+																	<option value="">Select Algorithm</option>
+																	{% for algorithm in algorithms %}
+																		{% if subscription_id == 'premium' %}
+																			{% if algorithm.access == 'premium' or algorithm.access == 'free' %}
+																				<option value="{{ algorithm.id }}">{{ algorithm.name }}</option>
+																			{% else %}
+																			{% endif  %}
+																		{% else %}
+																			{% if algorithm.access == 'free' %}
+																				<option value="{{ algorithm.id }}">{{ algorithm.name }}</option>
+																			{% endif %}
+																		{% endif %}
+																	{% endfor %}
+																</select>
+															</div>
+															<div class="btn-sec">
+																<div class="row">
+																	<div class="col" style="padding-bottom: 3rem;">	
+																		<a href="javascript:history.go(-1)" class="btn btn-primary btn-st">Back</a>
+																	</div>
+																	<div class="col">
+																		<button type="submit" class="btn btn-primary btn-st" value="Save">Build Model</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</form>
+												<p class="info">To read about which Algorithm Suited well to your Predications 
+													<a href="{% url 'learning-section' %}" target="_blank">Click here</a></p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!--/.own-model-sec-->
+		</article><!--/.article-->
+	{% include 'partials/footer.html' %}
+	</main>
+{% endblock %}

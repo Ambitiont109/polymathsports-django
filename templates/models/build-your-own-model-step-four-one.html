@@ -1,0 +1,121 @@
+{% extends 'layout/base.html' %}
+{% load static%}
+{% block title %}
+<title>Polymath Sports :: Build Your Own Model</title>
+{% endblock %}
+{% block content %}
+<main class="st-wrapper">
+	{% include 'partials/main_header.html'%}
+		<article class="main-content">
+			<section class="own-model-sec">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="head-sec">
+								<h1>Build your own model1</h1>
+								{% include 'partials/messages.html' %}
+							</div>
+							<div class="body-sec">
+								<div class="row">
+
+									{% include 'partials/build_model_sidebar.html' with active='4' %}
+
+									<div class="col-lg-8 col-md-8 col-sm-12 col-12">
+										<div class="side-bar-body">
+											<div class="inner-sec">
+												<h6>Step 4 1</h6>
+												<h6>Manipulate your Predictor Variables</h6>
+												<p> Perform logarthmic functions, square, or cube any desired varibales</p>
+												<form id="predictorManipulator" class="" name="predictorManipulator" method="POST" action="">
+													{% csrf_token %}
+													<div class="row">
+														<div class="col-lg-9 col-md-9 col-sm-12 col-12">
+															<div class="form-group" >
+																<select class="form-control" id="manipulate" name="manipulate">
+																	<option>Select Manipulation to Perform</option>
+																	<option>Multiply</option>
+																	<option>Power of</option>
+																	<option>Square Root</option>
+																	<option>Cube</option>
+																</select>
+																<div class="form-group text">
+																	<input class="mt-2" type="text" name="multiplier" id="multiplier" placeholder="Multiplier/Power of" style="visibility: hidden">
+																</div>			
+															</div>
+															<div class="form-group mb-5">
+																<select class="form-control" name="predictor_variable">
+																	<option>Select Variable to Manipulate</option>
+																	{% for predictor_variable in predictor_variables %}
+																		<option>{{ predictor_variable }}</option>
+																	{% endfor %}
+																</select>
+																<input type="submit" class="btn btn-secondary btn-st mt-3" name="add_manipulator" value="Add">
+															</div>
+															{% for manip in user_manipulations reversed %}
+																<div class="saved-data mb-4 mt-2">
+																	<div class="row">
+																		<label class="col-lg-3 col-md-3 col-sm-12 col-12">{{ manip.manipulation }}</label>
+																		{% if manip.manipulator_value %}
+																			{% if manip.manipulation == 'Multiply' %}
+																				<span> {{ manip.manipulator_value }}&nbsp; predictor &nbsp; </span>
+																			{% else %}
+																				<span>{{ manip.manipulator_value }}&nbsp; predictor &nbsp;</span>
+																			{% endif %}
+																		{% endif %}
+																		<span>{{ manip.predictors }}</span>
+																		<!-- {% for predictor in manip.predictors %}
+																			<div class="col-lg-9 col-md-9 col-sm-12 col-12 show-data">
+																				<span>{{ predictor }}</span>
+																			</div>
+																		{% endfor %} -->
+																	</div>
+																	<!-- <input type="submit" value="{{ manip.id }}" name="delete_manipulator" class="btn btn-default btn-st"> -->
+																	<button type="submit" value="{{ manip.id }}" name="delete_manipulator" class="btn btn-default btn-st"><i class="fa fa-times" aria-hidden="true"></i></button>
+																</div>
+															{% endfor %}
+															<div class="row">
+																<div class="col" style="padding-bottom: 3rem;">	
+																	<a href="javascript:history.go(-1)" class="btn btn-primary btn-st">Back</a>
+																</div>
+																<div class="col">
+																	<input type="submit" name="next" class="btn btn-primary btn-st" value="Next">
+																</div>
+															</div>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!--/.own-model-sec-->
+		</article><!--/.article-->
+	{% include 'partials/footer.html' %}
+	</main>
+
+	{% block js %}
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript">
+	  	$("#manipulate").change(function () {
+		//let urlGames = $('#SelectGameForm').data('gamesUrl');  
+		let element = document.querySelector('#predictorManipulator'); 
+		let manipulator = $(this).val();  // get the selected sport ID from the HTML input
+		
+		console.log(manipulator);
+		if (manipulator == 'Multiply') {
+			document.getElementById("multiplier").style.visibility = "visible";
+		} else if (manipulator == 'Power of'){
+			document.getElementById("multiplier").style.visibility = "visible";
+		} else {
+			document.getElementById("multiplier").style.visibility = "hidden";
+		}
+//		console.log(urlGames);
+	  });
+
+	</script>
+	{% endblock js %}
+{% endblock %}

@@ -1,0 +1,178 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}
+<title>Polymath Sports :: Build Your Own Model</title>
+{% endblock %}
+<script type="text/javascript" src="{% static 'js/build-model-steps.js' %}"></script>
+{% block content %}
+<main class="st-wrapper">
+	{% include 'partials/main_header.html' %}
+		<article class="main-content">
+			<section class="own-model-sec">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							{% if not user_flow %}
+								<div class="head-sec">
+									<h1>What Would You Like To Do?</h1>
+									<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+										<div class="body-sec">
+											<div class="row">
+												<div class="col-md-6 text-center" style="padding-bottom: 3rem;">
+													<input type="submit" name='flow_selector'  class="btn btn-primary btn-st p-2" value="Build a New Model">
+												</div>
+												<div class="col-md-6 text-center">
+													<input type="submit" name="flow_selector" class="btn btn-primary btn-st p-2" value="Predict with a Saved Model">
+												</div>
+											</div>
+										</div>	
+									</form>
+								</div>
+
+							<!-- BUILD FLOW -->
+							{% elif user_flow == 'build_model' %}							
+								<div class="head-sec">
+										<h1>Build your own model</h1>
+										{% include 'partials/messages.html' %}
+								</div>
+								<div class="body-sec">
+
+									<div class="row">
+
+										{% include 'partials/build_model_sidebar.html' with active='1' %}
+
+										<div class="col-lg-8 col-md-8 col-sm-12 col-12">
+											<div class="side-bar-body">
+												<div class="inner-sec">
+													<h6>Step 1</h6>
+													<h6>Select Your Game<sup>*</sup></h6>
+													<p>This is what you are trying to predict (Members will be able to select an entire sport/day/or week)</p>
+													<form id="SelectGameForm"
+														method="POST"
+														enctype="multipart/form-data"
+														class=""
+														data-gamesUrl="{% url 'ajax_load_games' %}"> 
+														{% csrf_token %}
+														<div class="row">
+															<div class="col-lg-9 col-md-9 col-sm-12 col-12">
+																<div class="form-group">
+																	<input type="text" id="" class="form-control" name="modelName" value="" placeholder="Enter your Model Name">
+																</div>
+																<div class="form-group">
+																	<select id="sport_id" name="sport_id" class="form-control">
+																		<option value="">Select the Sport</option>
+																		{% for sport in sports %}
+																			<option value="{{ sport.id }}">{{ sport.name }}</option>
+																		{% endfor %}
+																	</select>
+																</div>
+																<!-- <div  class="form-group mb-4" >
+																	<select class="form-control" id="game_id" name="game_id" > 
+																		<option value="">Select the Game</option>  -->
+																		<!-- {% for game in games %}
+																			<option value="{{game.id}}">{{ game.name }}</option>
+																		{% endfor %} -->
+																	<!-- </select>
+																</div> -->
+																<div  class="form-group mb-4" id="game_id" name="game_id" >
+																	
+																</div>
+																
+																<input type="submit" class="btn btn-primary btn-st" value="Next">
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							<!-- PREDICT GAMES FLOW -->
+							{% elif user_flow == 'predict_games' %}
+								<div class="head-sec">
+									<h1>Predict Games</h1>
+									{% include 'partials/messages.html' %}
+								</div>							
+								<div class="body-sec">
+
+								<div class="row">
+
+									{% include 'partials/predict_games_sidebar.html' with active='1' %}
+
+									<div class="col-lg-8 col-md-8 col-sm-12 col-12">
+										<div class="side-bar-body">
+											<div class="inner-sec">
+												<h6>Select Your Game/s<sup>*</sup></h6>
+												<form id="SelectGameForm"
+													method="POST"
+													enctype="multipart/form-data"
+													class=""
+													data-gamesUrl="{% url 'ajax_load_games' %}"> 
+													{% csrf_token %}
+													<div class="row">
+														<div class="col-lg-9 col-md-9 col-sm-12 col-12">
+															<div class="form-group">
+																<select id="sport_id" name="sport_id" class="form-control">
+																	<option value="">Select the Sport</option>
+																	{% for sport in sports %}
+																		<option value="{{ sport.id }}">{{ sport.name }}</option>
+																	{% endfor %}
+																</select>
+															</div>
+															<!-- <div  class="form-group mb-4" >
+																<select class="form-control" id="game_id" name="game_id" > 
+																	<option value="">Select the Game</option>  -->
+																	<!-- {% for game in games %}
+																		<option value="{{game.id}}">{{ game.name }}</option>
+																	{% endfor %} -->
+																<!-- </select>
+															</div> -->
+															<div  class="form-group mb-4" id="game_id" name="game_id" >
+																
+															</div>
+															
+															<input type="submit" class="btn btn-primary btn-st" value="Next">
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>						
+							{% endif %} <!--User flow selector-->
+						</div>
+					</div>
+				</div>
+			</section><!--/.own-model-sec-->
+		</article><!--/.article-->
+	{% include 'partials/footer.html' %}
+	</main>
+
+	{% block js %}
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript">
+	  	$("#sport_id").change(function () {
+		//let urlGames = $('#SelectGameForm').data('gamesUrl');  
+		let element = document.querySelector('#SelectGameForm'); // Selecting the games form
+		let urlGames = element.getAttribute('data-gamesUrl'); // get the url of the `load_games` view
+ 
+		let sportId = $(this).val();  // get the selected sport ID from the HTML input
+//		console.log(sportId);
+//		console.log(urlGames);
+		$.ajax({
+			url: urlGames,
+			data: {
+				sport: sportId
+			},
+			success: function(response) {
+//				console.log(response)
+			$('#game_id').html(response);
+			}
+		})		
+	  });
+
+	</script>
+	{% endblock js %}
+{% endblock %}

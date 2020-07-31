@@ -1,0 +1,35 @@
+{% load static%}
+<header class="st-header">
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-st">
+    <div class="container">
+      <a class="navbar-brand" href="/"><img src="{% static 'images/logo.png' %}" alt="Logo"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#stMenu" aria-controls="stMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="stMenu">
+        <ul class="navbar-nav ml-auto">
+          {% url 'home' as home_url %}
+          <li  {% ifequal request.get_full_path home_url %} class=" nav-link active" {% endifequal %}><a href="{% url 'home' %}">Home</a></li>
+          {% url 'modeling-packages' as modeling_packages_url %}
+          <li {% ifequal request.get_full_path modeling_packages_url %} class=" nav-link active" {% endifequal %}><a href="{% url 'modeling-packages' %}">Packages</a></li>
+          {% url 'build-model' as build_model_url %}
+          <li {% ifequal request.get_full_path build_model_url %} class="active" {% endifequal %} ><a href="{% url 'user-flow' %}" >Build Your Own Model</a></li>
+          {% url 'bet-calculators' as bet_calculators_url %}
+          <li {% ifequal request.get_full_path bet_calculators_url %} class="active" {% endifequal %}><a href="{% url 'bet-calculators' %}" >Bet Calculators</a></li>
+          {% url 'learning-section-video' as learning_section_video_url %}
+          <li {% ifequal request.get_full_path learning_section_video_url %} class="active" {% endifequal %}><a href="{% url 'learning-section' %}" >Education</a></li>
+          {% url 'contact-us' as contact_us_url %}
+          <li {% ifequal request.get_full_path contact_us_url %} class="active" {% endifequal %} ><a href="{% url 'contact-us' %}">Contact Us</a></li>
+          {% if request.user.is_authenticated %}
+<!--          <li class="login-link"><a href="{% url 'profile' %}">Welcome, {% firstof request.user.first_name  request.user.username %}</a></li>-->
+          <li class="login-profile"><a href="{% url 'profile' %}"><span><img src="{% if request.user.profile and request.user.profile.profile_pic %}{{request.user.profile.profile_pic.url}} {% else %} {% static 'images/no-profile-pic-icon-1.png' %} {% endif %}" width="50" height="50"></span></a></li>
+          <li class="register-link"><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+          <li class="login-link"><a href="{% url 'login' %}">Login</a></li>
+          <li class="register-link"><a href="{% url 'register' %}">Register</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header><!--/.st-header-->

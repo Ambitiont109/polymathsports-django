@@ -1,0 +1,91 @@
+{% extends 'layout/base.html' %}
+{% load static%}
+{% block title %}
+<title>Polymath Sports :: My Model</title>
+{% endblock %}
+{% block content %}
+<main class="st-wrapper">
+	{% include 'partials/main_header.html'%}
+		<article class="main-content">
+			<section class="usermodule-sec pt-5">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="head-sec">
+								<h1 class="mb-4">My Prediction models</h1>
+							</div>
+							<div class="outer-wrapper">
+								<div class="row">
+									<!-- <div class="col-lg-4 col-md-4 col-sm-6 col-12 ">
+										<div>
+											<form class="search-form-model">
+												<input type="text" class="form-control" name="" placeholder="Model Name">
+												<span><i class="fa fa-search" aria-hidden="true"></i></span>
+											</form>
+										</div>
+									</div>
+									<div class="col-lg-2 col-md-2 col-sm-4 col-12 ml-auto">
+										<div>
+											<form class="search-form">
+												<div class="form-group">
+													<select class="form-control">
+														<option>Sort By</option>
+														<option>Complete</option>
+														<option>Pending</option>
+													</select>
+												</div>
+											</form>
+										</div>
+									</div> -->
+									<div class="col-lg-12 col-md-12 col-sm-12 col-12 m-auto">
+										<div class="inner-sec">
+											<div class="body-sec">
+												<div class="table-responsive">
+													<table class="table text-center table-bordered model-table">
+													  <thead class="thead-color">
+													    <tr>
+													      <th scope="col">Model Name</th>
+													      <th scope="col">Created</th>
+													      <th scope="col">Model Sport</th>
+													      <th scope="col">Model Target</th>
+													      <!-- <th scope="col">Details</th> -->
+													    </tr>
+													  </thead>
+													  <tbody>
+														{% for model in user_models %}
+														<form action="" method="POST" id="generateReport">
+															{% csrf_token %}
+															<tr>
+															<td>{{ model.model_name }}</td>
+															<td>{{ model.created }}</td>
+															<td>{{ model.model_sport }}</td>
+															<td>{{ model.model_target_variables }}</td>
+															<td>
+																<button type="submit" name="model_id" class="btn btn-primary btn-st p-2" value="{{ model.id }}">SEE REPORT</button>
+															</td>
+															<!-- <td> -->
+
+																<!-- <button type="button" class="btn btn-outline-danger view-btn">View Details</button> -->
+																<!-- ---------------PDF and Reuse btn----------- -->
+															<!-- 	<button type="button" class="btn btn-outline-danger view-btn">PDF</button>
+																<button type="button" class="btn btn-outline-danger view-btn">Reuse</button> -->
+															<!-- </td> -->
+														  </tr>  
+														</form>				
+														{% endfor %}
+													  </tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!--/.usermodule-sec-->
+		</article><!--/.article-->
+	{% include 'partials/footer.html' %}
+	</main>
+{% endblock %}

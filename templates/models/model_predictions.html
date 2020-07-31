@@ -1,0 +1,90 @@
+{% extends 'layout/base.html' %}
+{% load static%}
+{% block title %}
+<title>Polymath Sports :: Build Your Own Model</title>
+{% endblock %}
+{% block content %}
+<main class="st-wrapper">
+	{% include 'partials/main_header.html'%}
+		<article class="main-content">
+			<section class="own-model-sec">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="head-sec">
+								<h1>Build your own model</h1>
+								{% include 'partials/messages.html' %}
+							</div>
+							<div class="body-sec">
+								<div class="row">
+                                    {% include 'partials/predict_games_sidebar.html' with active='11' %}
+									<div class="col-lg-8 col-md-8 col-sm-12 col-12">
+										<div class="side-bar-body">
+											<div class="inner-sec">
+												<h6>Predictions</h6>
+												<table class="table table-striped table-bordered table-hover mb-4">
+													<thead>
+														<tr>
+															<th colspan="2">Target Variable: <span class="text-danger">{{ target_variable }}</span><br>
+																Model Accuracy:  <span class="text-danger">{{ model_score }}%</span>
+															
+															</th>
+															<th colspan="5">Predictions</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>No.</td>
+															<td>Game/s</td>
+															{% if target == 'classification' %}
+																<td>Home Win</td>
+																<td>Away Win</td>
+															{% else %}
+																<td>Home Points</td>
+																<td>Away Points</td>
+																<td>Total Points</td>
+															{% endif %}
+														</tr>
+														{% for game, prediction in games_predictions.items %}
+														<tr>
+															<td>{{ forloop.counter }}</td>
+															<td>{{ game }}</td>
+															{% if target == 'classification' %}
+																{% if prediction == 1 %}
+																	<td class="green"><span> Win </span></td>
+																	<td class=""><span></span></td>
+																{% else %}
+																	<td class=""><span></span></td>
+																	<td class="green"><span> Win </span></td>
+																{% endif %}
+															{% elif target == 'TotalScore' %}
+																<td class=""><span></span></td>
+																<td class=""><span></span></td>
+																<td class=""><span>{{ prediction }}</span></td>
+															{% elif target == 'HomeScore' %}
+																<td class=""><span>{{ prediction }}</span></td>
+																<td class=""><span></span></td>
+																<td class=""><span></span></td>
+															{% else %}
+																<td class=""><span></span></td>
+																<td class=""><span>{{ prediction }}</span></td>
+																<td class=""><span></span></td>
+															{% endif %}
+														</tr>
+														{% endfor %}
+													</tbody>
+												</table>
+												<button type="button" class="btn btn-primary btn-st">GENERATE A REPORT & DOWNLOAD</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!--/.own-model-sec-->
+		</article><!--/.article-->
+	{% include 'partials/footer.html' %}
+	</main>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'layout/base.html' %}
+{% load static%}
+{% block title %}
+<title>Polymath Sports :: Build Your Own Model</title>
+{% endblock %}
+{% block content %}
+<main class="st-wrapper">
+	{% include 'partials/main_header.html'%}
+		<article class="main-content">
+			<section class="own-model-sec">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="head-sec">
+                                <h1>Predict Games</h1>
+                                {% include 'partials/messages.html' %}
+							</div>
+							<div class="body-sec">
+								<div class="row">
+
+									{% include 'partials/predict_games_sidebar.html' with active='10' %}
+
+									<div class="col-lg-8 col-md-8 col-sm-12 col-12">
+										<div class="side-bar-body">
+											<div class="inner-sec">
+												<h6>Choose the Machine Learning Model</h6>
+												<p> This model will be used to predict the outcome of the games you selected.</p>
+                                                <form id="modelSelector" 
+                                                    class="" name="modelSelector" 
+                                                    method="POST" 
+                                                    action="" 
+                                                    model_details_url="{% url 'model_details' %}"
+                                                    enctype="multipart/form-data">
+													{% csrf_token %}
+													<div class="row">
+														<div class="col-lg-9 col-md-9 col-sm-12 col-12">
+															<div class="form-group" >
+																<select class="form-control" id="model_selector" name="model_selector">
+																	<option value="">Select the Model</option>
+																	{% for model in models %}
+																		<option name='user_model' value="{{ model.id }}">{{ model.model_name }}</option>
+																	{% endfor %}
+																</select>
+															</div>
+                                                            <div id="model_details" class="form-group">
+
+                                                            </div>
+                                                            <a href="javascript:history.go(-1)" class="btn btn-primary btn-st">Back</a>
+															<input type="submit" name="select" class="btn btn-primary btn-st" value="Select">
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!--/.own-model-sec-->
+		</article><!--/.article-->
+	{% include 'partials/footer.html' %}
+	</main>
+
+	{% block js %}
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript">
+      $("#model_selector").change(function () {
+		//let urlGames = $('#SelectGameForm').data('gamesUrl');  
+		let element = document.querySelector('#modelSelector'); // Selecting the games form
+		let modelUrl = element.getAttribute('model_details_url'); // get the url of the `load_games` view
+ 
+		let modelId = $(this).val();  // get the selected sport ID from the HTML input
+//		console.log(sportId);
+//		console.log(urlGames);
+		$.ajax({
+			url: modelUrl,
+			data: {
+				model: modelId
+			},
+			success: function(response) {
+//				console.log(response)
+			$('#model_details').html(response);
+			}
+		})		
+	  });
+	</script>
+	{% endblock js %}
+{% endblock %}

@@ -1,0 +1,150 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}
+<title>Polymath Sports :: Home </title>
+{% endblock %}
+{% block content %}
+<main class="st-wrapper">
+
+		{% include 'partials/main_header.html' %}
+		{% include 'partials/messages.html' %}
+
+		<section class="banner-sec">
+			<video autoplay loop muted>
+				{% if video_homepage %}
+					<source src="{% static '/videos/'|add:video_homepage %}" type="video/mp4">
+					<source src="{% static 'images/banner.ogg' %}" type="video/ogg">
+				{% else %}
+					<source src="{% static 'images/banner.mp4' %}" type="video/mp4">
+					<source src="{% static 'images/banner.ogg' %}" type="video/ogg">
+				{% endif %}
+				Your browser does not support HTML5 video.
+			</video>
+			<div class="overlay">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="banner-caption">
+								<h2>A REVOLUTIONARY SPORTS <span>BETTING SOLUTION</span></h2>
+								<h6>Our easy to use tool will allow you to create your own <span>sports betting</span> <br>model in <span>minutes!</span></h6>
+								<p>Select what you want to predict Choose from hudreds of variables Select an algorithm Get your Prediction and make your <span>Bet!</span></p>
+								<div class="btn-sec">
+									<a href="{% url 'user-flow' %}" {% ifequal request.get_full_path build_model_url %} class="active" {% endifequal %} class="btn btn-primary btn-st">Try Now</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!--/.Banner-Sec-->
+		<article class="main-content">
+			<section class="features-sec">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="head-sec">
+								<h2>Features</h2>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3 col-md-3 col-sm-6 col-12">
+							<div class="outer-wrapper">
+								<div class="inner-sec">
+									<a href="{% url 'modelling_package' subscription=vip_plan %}" {% ifequal request.get_full_path bet_calculators_url %} class="active" {% endifequal %}><img src="{% static 'images/feature-one.png' %}" alt="Banner"></a>	
+									<div class="caption">
+										<p>Get our best bets</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-3 col-sm-6 col-12">
+							<div class="outer-wrapper">
+								<div class="inner-sec">
+									<a href="{% url 'modelling_package' subscription=vip_plan %}" {% ifequal request.get_full_path build_model_url %} class="active" {% endifequal %}><img src="{% static 'images/feature-two.png' %}" alt="Banner"></a>
+									<div class="caption">
+										<p>Build your model. Be the smart money</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-3 col-sm-6 col-12">
+							<div class="outer-wrapper">
+								<div class="inner-sec">
+									<a href="{% url 'bet-calculators' %}" {% ifequal request.get_full_path bet_calculators_url %} class="active" {% endifequal %}><img src="{% static 'images/feature-three.png' %}" alt="Banner"></a>
+									<div class="caption">
+										<p>Bet size calculators</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-3 col-sm-6 col-12">
+							<div class="outer-wrapper">
+								<div class="inner-sec">
+									<a href="{% url 'modelling_package' subscription=vip_plan %}"><img src="{% static 'images/feature-four.png' %}" alt="Banner"></a>
+									<div class="caption">
+										<p>Access to our team</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!--/.features-sec-->
+			<section class="subscribe-sec">
+				<img src="{% static 'images/subscribe-bg.png' %}" alt="Bg-Image">
+				<div class="overlay">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-7 col-md-9 col-sm-12 col-12 m-auto">
+								<div class="inner-sec">
+									<h2>Subscribe for Free Picks and <span>News!</span></h2>
+									<form id="newsletter" class="form-control" name="newsletter" method="POST" action="">
+										{% csrf_token %}
+										<div class="form-group row">
+											<div class="col-lg-8 col-md-8 col-sm-6 col-12">
+												<input type="email" class="form-control" name="newsletter_email" value="" placeholder="Your Email">
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-6 col-12">
+												<button type="submit" class="btn btn-primary btn-block btn-st">Subscribe</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!--/.subscribe-sec-->
+			<section class="packages-sec">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="head-sec">
+								<h2>Packages</h2>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-12 col-12">
+							<div class="image-wrapper">
+								<img src="{% static 'images/Packages-banner.png' %}" alt="Banner">
+								<div class="overlay"></div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12 col-12">
+							<div class="content-sec">
+								<h2>Choose Pricing & <span>Packages</span></h2>
+								<p>Polymath different packages and plans will allow you to ramp up your prediction abilities garadually and with confident oof success.
+									Pick the plan that suits your current needs and requirements, then scale to VIP to get the full advantages of Polymath prediction platform.
+								</p>
+								<a href="{% url 'modeling-packages' %}" class="btn btn-primary btn-st">Choose Packages</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!--/.packages-sec-->
+		</article><!--/.article-->
+		{% include 'partials/footer.html' %}
+	</main>
+{% endblock %}

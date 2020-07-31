@@ -1,0 +1,21 @@
+media/
+*__pycache__/
+*.pyc
+env/
+venv*
+my_database.sql
+*.bak
+ngrok
+.vscode/
+*dummy*
+*NOT_USED*
+*.ipynb
+archive
+*.csv
+test
+*.pickle
+settings.py
+migrations
+
+# To be removed
+#sports

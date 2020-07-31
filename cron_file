@@ -1,0 +1,2 @@
+SPORTS_PATH='/home/ubuntu/Polymath/polymath/sports'
+00 08 * * * /usr/bin/env bash -c 'source ${HOME}/Polymath/venv_polymath/bin/activate && sh /home/ubuntu/Polymath/polymath/daily_run.sh' > /dev/null 2>&1

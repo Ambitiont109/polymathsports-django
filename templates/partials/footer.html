@@ -1,0 +1,42 @@
+{% load static %}
+<footer class="foot-sec">
+  <div class="top-foot">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="inner-sec">
+            <div class="foot-links">
+              <a href="/" class="foot-brand">
+                <img src="{% static 'images/logo.png' %}" alt="Logo">
+              </a>
+              <ul>
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="{% url 'modeling-packages' %}">Packages</a></li>
+                <li><a href="{% url 'user-flow' %}">Build Your Own Model</a></li>
+                <li><a href="{% url 'bet-calculators' %}">Bet Calculators</a></li>
+                <li><a href="{% url 'learning-section' %}">Learning Section</a></li>
+                <li><a href="{% url 'contact-us' %}">Contact Us</a></li>
+                <li><a href="{% url 'terms-and-conditions' %}">Terms & Conditions</a></li>
+                <li><a href="{% url 'privacy-policy' %}">Privacy Policy</a></li>
+              </ul>
+            </div>
+            <p>8001 Wakehurst Ave. Snohomish, WA 98290</p>
+            <p><a href="mailto:abc@gmail.com">polymathsports@gmail.com /p>
+            <p><a href="tel:+1123456789">+1 123456789</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="copyright-sec">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="inner-sec">
+            <p>Polymath Limited. <span>&copy;</span> All Rights Reserved</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,146 @@
+{% extends 'layout/base.html' %}
+{% load static%}
+{% block title %}
+<title>Polymath Sports :: Profile</title>
+{% endblock %}
+{% block content %}
+<main class="st-wrapper">
+	{% include 'partials/main_header.html'%}
+		<article class="main-content">
+			<section class="usermodule-sec">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="outer-wrapper profile-outer">
+								<div class="row">
+									<div class="col-lg-7 col-md-8 col-sm-12 col-12 m-auto">
+										<div class="inner-sec">
+											<div class="head-sec">
+												<h1>Profile</h1>
+											</div>
+											<div class="body-sec">
+												{% include 'partials/messages.html' %}
+												<!-- {% ifnotequal user.profile.subscription.name|upper "FREE"  %} -->
+												<div class="subscription-details">
+													<div class="row">
+														<div class="col-lg-6 col-md-6 col-sm-12 col-12">
+															<div class="inner-sec">
+																<p>CURRENT SUBSCRIPTION PLAN: <b>{{ user_subscription }}</b></p>
+															</div>
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-12 col-12">
+															<a href="{% url 'modeling-packages' %}" type="button" class="btn btn-primary btn-st" value="Change Plan">Change Plan</a>
+														</div
+														<div class="col-lg-6 col-md-6 col-sm-12 col-12">
+															{% if user.profile.subscription_end_date %}
+															<div class="inner-sec">
+																<p class="end-date">Subscription Ends: <span>{{user.profile.subscription_end_date}}</span></p>
+																<!-- {% if user.profile.subscription.name == 'MONTHLY'  or user.profile.subscription.name == 'YEARLY'%}
+																	<p class="link"><a href="{%  url 'learning-vip' %}">Learning Section</a></p>
+																{% else %}
+																	<p class="link"><a href="{%  url 'learning-section' %}">Learning Section</a></p>
+																{% endif %} -->
+															</div>
+															{% else%}
+															<div>
+																<div>
+																	<p class="end-date"></p>
+																	<p class="link"></p>
+																</div>
+															</div>
+															{% endif %}
+														</div>
+													</div>
+												</div>
+												<!-- {% endifnotequal %} -->
+												<form id="" class="" name="" runat="server" method="POST" action="{% url 'profile' %}" enctype="multipart/form-data">
+													{% csrf_token %}
+													<div class="form-group">
+														<div class="avatar-outer">
+															<div class="avatar">
+<!--																<img src="images/avatar.png" alt="Avatar">-->
+																<img src="{% if user.profile.profile_pic %}{{user.profile.profile_pic.url}} {% else %} {% static 'images/no-profile-pic-icon-1.jpg' %} {% endif %}"
+																	 id="preview" name="old_profile_pic" alt="   Avatar">
+															</div>
+															<span class="upload-avatar">
+																<input type="file" id="profile_pic" class="form-control" onchange="preview_image()" name="profile_pic">
+
+																<span class="custom-input">
+																	<i class="fa fa-camera" aria-hidden="true"></i>
+																</span>
+															</span>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-lg-4 col-md-4 col-sm-4 col-12 col-form-label">Name</label>
+														<div class="col-lg-8 col-md-8 col-sm-8 col-12 input-group">
+															<input type="text" id="" class="form-control" name="name" value="" placeholder="{{user.first_name}}">
+															<div class="input-group-append">
+																<button class="btn btn-default" type="button"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+															</div>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-lg-4 col-md-4 col-sm-4 col-12 col-form-label">Email</label>
+														<div class="col-lg-8 col-md-8 col-sm-8 col-12 input-group">
+															<input type="email" id="" class="form-control" name="" value="" placeholder="{{user.email}}" disabled>
+															<div class="input-group-append">
+																<button class="btn btn-default" type="button" disabled><i class="fa fa-ban" aria-hidden="true"></i></button>
+															</div>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-lg-4 col-md-4 col-sm-4 col-12 col-form-label">Twitter Handle</label>
+														<div class="col-lg-8 col-md-8 col-sm-8 col-12 input-group">
+															<input type="text" id="" class="form-control" name="twitter" value="" placeholder="{{user.profile.twitter}}">
+															<div class="input-group-append">
+																<button class="btn btn-default" type="button"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+															</div>
+														</div>
+													</div>
+													<div class="form-group row align-items-center form-check">
+														<label class="col-lg-6 col-md-6 col-sm-6 col-12 form-check-label">
+															{% if user.profile.newsletter_optin %}
+																<input class="form-check-input" name = 'newsletter'type="checkbox" id = "newsletter" checked>
+															{%else%}
+																<input class="form-check-input" name = 'newsletter'type="checkbox" id = "newsletter" >
+															{%endif%}
+															<span class="custom-checkbox"></span>
+															Newsletter Opt In/Out
+														</label>
+													</div>
+
+													<div class="form-group row justify-content-center">
+														<div class="col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+															<input type="submit" class="btn btn-primary btn-st" value="Save Changes">
+														</div>
+													</div>
+												</form>
+												<div class="link-sec text-center mb-3">
+													<a href="{% url 'modal-page' %}">My Prediction Models</a>
+												</div>
+											</div>
+											<div class="foot-sec">
+												<a href="{% url 'add-card' %}">Add Card</a>
+												<a href="{% url 'change-password' %}">Change Password</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!--/.usermodule-sec-->
+		</article><!--/.article-->
+		{% include 'partials/footer.html' %}
+	<script>
+	function preview_image()
+	{
+	if(event.target.files.length > 0){
+	   	$("#preview").attr('src', URL.createObjectURL(event.target.files[0]));
+	   }
+	}
+	</script>
+	</main>
+{% endblock %}

@@ -1,0 +1,109 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"> -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block title %}
+<title>Polymath Sports :: Home</title>
+{% endblock %}
+<!-- Fontawesome Css Include Here -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+<link rel="icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">
+<!-- Bootstrap Css Include Here -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-grid.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-reboot.css' %}">
+<!-- Theme Main Css Include Here -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap4-duallistbox/4.0.2/bootstrap-duallistbox.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/dual-listbox/dist/dual-listbox.css">
+
+<style type="text/css" media="screen">
+	#spinner{
+		position: fixed;
+		top: 50%;
+		left: 50%;
+	}
+</style>
+
+</head>
+<body>
+{% block content %}
+{% endblock content %}
+</body>
+<!-- Optional JavaScript -->
+<script>
+    $(function(){
+        $('[data-toggle="tooltip"]').tooltip()
+        
+    })
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.validate.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.validate.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/validations.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/build-model-steps.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/support_validations.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.chained.js' %}"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap4-duallistbox/4.0.2/jquery.bootstrap-duallistbox.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dual-listbox/dist/dual-listbox.min.js"></script>
+
+<!-- https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.min.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.min.js"></script>	
+<!-- <script type="text/javascript" src="{% static 'js/support_validations.js' %}"></script> -->
+<!-- Custom Script Include Here -->
+{% block innerjs %}
+<script type="text/javascript">
+	// Add Class On Scroll In Header
+	$(window).scroll(function() {
+		var scroll = $(window).scrollTop();
+		if (scroll >= 1) {
+			$(".st-header").addClass("darkHeader");
+		}
+		else {
+			$(".st-header").removeClass("darkHeader");
+		}
+	});
+
+	$(document).ready(function(){
+		// Banner Window Height
+		$('.banner-sec').css({'height': ($(window).height()) + 'px'});
+		// Set Input Type Password To Input Type Text And Input Type Text To Password
+		$('.btn-default').click(function(){
+			if($('#password').prop('type')=='password'){
+				$('#password').prop('type','text');
+			}else{
+				$('#password').prop('type','password');
+			}
+		});
+        $('.pass').click(function(){
+			if($('#password').prop('type')=='password'){
+				$('#password').prop('type','text');
+			}else{
+				$('#password').prop('type','password');
+			}
+
+		});
+        $('.cpass').click(function(){
+			if($('#password').prop('type')=='password'){
+				$('#password').prop('type','text');
+			}else{
+				$('#password').prop('type','password');
+			}
+		});
+	});
+</script>
+{% endblock %}
+</html>

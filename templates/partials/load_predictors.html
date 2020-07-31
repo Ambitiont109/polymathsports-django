@@ -1,0 +1,45 @@
+{% for predictor in predictors %}
+    {% if subscription_id == 'premium' %}
+        {% if predictor.access == 'premium' or predictor.access == 'free' %}
+            {% if predictor.status %}
+                <div class="tooltip-predictor tooltip-main" data-toggle="tooltip" data-placement="left" title="{{ predictor.description }}" id='checkbox-container'>
+                    <input class="form-check-input btn ml-1" name="predictor_variable" type="checkbox" id = "{{ predictor.id }}" value="{{ predictor.name }}" >
+                    <span class="ml-4" id="{{ predictor.pk }}">{{ predictor.name }}</span>
+                </div>
+            {% endif %}
+        {% else %}
+        {% endif  %}
+    {% else %}
+        {% if predictor.access == 'free' %}
+            {% if predictor.status %}
+                <div class="tooltip-predictor tooltip-main" data-toggle="tooltip" data-placement="left" title="{{ predictor.description }}" id='checkbox-container'>
+                    <input class="form-check-input btn ml-1" name="predictor_variable" type="checkbox" id = "{{ predictor.id }}" value="{{ predictor.name }}">
+                    <span class="ml-4" id="{{ predictor.pk }}">{{ predictor.name }}</span>
+                </div>
+            {% endif %}
+        {% else %}
+        {% endif  %}
+    {% endif %}
+{% endfor %}
+<!-- 
+<script>
+    hi
+    jQuery(function(){
+        if (localStorage.input) {
+            var checks = JSON.parse(localStorage.input);
+            jQuery(':checkbox').prop('checked', function(i) {
+                console.log(`${i}`)
+                console.log(`${checks[i]}`)
+                return checks[i];
+            });
+        }
+    });
+    
+    jQuery(':checkbox').on('change', function() {
+        localStorage.input = JSON.stringify(jQuery(':checkbox').map(function() {
+            return this.checked;
+        }).get());
+    });
+    /*
+    */
+</script> -->

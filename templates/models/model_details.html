@@ -1,0 +1,16 @@
+<div id="model_id">
+    {% for m in model %}
+    <div><b>Model name:</b> <span>{{ m.model_name }}</span></div>
+    <div><b>Model Sport:</b> <span>{{ m.model_sport }}</span></div>
+    <div><b>Model Target Variable:</b> <span>{{ m.model_target_variables }}</span></div>
+    <div><b>Model Algorithm:</b> <span>{{ m.model_algorithm }}</span></div>
+    <div><b>Model Manipulations:</b></div>
+
+    <div>
+        <hr>
+    </div>
+    <div><b>Model Score:</b> <span>{{ m.model_score }}</span></div>
+
+    
+    {% endfor %}
+</div>

@@ -1,0 +1,11 @@
+print('starting ncaab master')
+source("config.R")
+print('finished config')
+#seasons <- seq(2018, 2019, 2020)
+
+source("scraper_for_schedule.R")
+print('finished scraper sched')
+source("scraper_for_game_data.R")
+print('finished scraper game')
+source("data_joins_ay_polymath.R")
+print('finished joins')

@@ -1,0 +1,30 @@
+{% extends 'layout/base.html' %}
+{% load static%}
+{% load i18n %}
+{% block title %}
+<title>
+    {% trans "Server Error" %}
+</title>
+{% endblock %}
+
+{% block content %}
+<main class="st-wrapper">
+	{% include 'partials/main_header.html'%}
+        <article class="main-content">
+			<section class="usermodule-sec">
+				<div class="container">
+                    <div class="row justify-content-center align-items-center">
+                        <h2>Ooops!!! 500</h2>
+                    </div>
+                    <div class="row justify-content-center align-items-center">
+                       <p class="text--center">{% trans "Looks like something went wrong!" %}</p>
+                    </div>
+                    <div class="row justify-content-center align-items-center">
+                            <p class="text--center">{% trans "We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, try refreshing." %}</p>
+                    </div>
+                </div>
+            </section>
+        </article>
+{% include 'partials/footer.html' %}
+</main>
+{% endblock %}

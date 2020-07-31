@@ -1,0 +1,15 @@
+{% load static %}
+<body style="padding: 0px; margin: 0px; background-color: #F7F8F9;">
+	<div class="main-wrapper" style="box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; -ms-box-sizing: border-box; display: block; width: 634px; padding: 30px 30px; background-color: #ffffff; border-radius: 2px; margin: auto;">
+		<div class="header-sec" style="padding: 15px; background-color:#111111; border-bottom: 1px solid rgba(151, 151, 151, .16);">
+			<img src="{{site_url}}{% static 'images/logo.png' %}" alt="Logo" style="max-width: 100%;">
+		</div>
+		<div class="content-sec" style="padding: 0px 15px;">
+			<h5 style="font-size: 20px; font-family: sans-serif; color: #333333; margin: 30px 0px;">Enquiry Mail : New Enquiry Request has been received.</h5>
+			<h6 style="font-size: 16px; font-family: sans-serif; font-weight: normal; color: #333333; position: relative; padding-left: 80px;"><span style="font-weight: bold; position: absolute; left: 0;">Name:</span> {{name}} </h6>
+			<h6 style="font-size: 16px; font-family: sans-serif; font-weight: normal; color: #333333; position: relative; padding-left: 80px;"><span style="font-weight: bold; position: absolute; left: 0;">Email:</span> {{email}} </h6>
+			<h6 style="font-size: 16px; font-family: sans-serif; font-weight: normal; color: #333333; position: relative; padding-left: 80px;"><span style="font-weight: bold; position: absolute; left: 0;">Subject:</span> {{subject}} </h6>
+			<h6 style="font-size: 16px; font-family: sans-serif; font-weight: normal; color: #333333; position: relative; padding-left: 80px;"><span style="font-weight: bold; position: absolute; left: 0;">Message:</span> {{description}} </h6>
+		</div>
+	</div>
+</body>

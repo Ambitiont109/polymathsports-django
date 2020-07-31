@@ -1,0 +1,79 @@
+{% extends 'layout/base.html' %}
+{% load static%}
+{% block title %}
+<title>Polymath Sports :: Learning Section Video</title>
+{% endblock %}
+{% block content %}
+<main class="st-wrapper">
+	<!-- {{video}} -->
+	<!-- {% for i in video %}
+		{{i}}
+	{% endfor %} -->
+	{% include 'partials/main_header.html'%}
+		<section class="top-banner">
+			<video autoplay loop muted>
+				{% if video_education %}
+					<!-- <source src="/static/videos/{{ video_education }}" type='video/mp4' %}"> -->
+					<source src="{% static  '/videos/'|add:video_education %}" type="video/mp4">
+					<source src="{% static '/images/banner.ogg' %}" type="video/ogg">
+				{% else %}
+					<source src="{% static 'videos/sample.mp4' type='video/mp4' %}">
+					<source src="{% static '/images/banner.ogg' %}" type="video/ogg">
+				{% endif %}
+				Your browser does not support HTML5 video.
+			</video>
+
+			<div class="overlay">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-9 col-md-9 col-sm-12 col-12">
+							<div class="banner-caption">
+								<h2>Sports betting 101: <span>numbers are everything</span></h2>
+								<p>The key to winning bets consistently is to build sound statistical models. It's not rocket science. There are opportunities every day to find inefficiencies in lines set. Here you'll learn how to find such inefficiencies and profit. </p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!--/.Banner-Sec-->
+		
+		<article class="main-content">
+			<section class="videos-outer-sec">
+				<div class="container">
+
+					{% for education in education_sections %}
+						<div class="row align-items-center">
+							<div class="col-lg-5 col-md-6 col-sm-12 col-12">
+								<div class="video-sec">
+									<!-- <video controls poster="/static/images/Packages-banner.png"> -->
+									<video controls poster="{% static '/images/Packages-banner.png' %}">
+										<!-- <source src="/static/videos/{{ education.video }}" type='video/mp4'> -->
+										<source src="{% static '/videos/'|add:education.video' %}" type="video/mp4">
+										
+										Your browser does not support HTML5 video.
+									</video>
+								</div>
+							</div>
+							<div class="col-lg-7 col-md-6 col-sm-12 col-12">
+								<div class="content-sec">
+											<!-- {{video1}} -->
+									<h6>{{ education.title }}</h6>
+									{{ education.body }}
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+
+				</div>
+			</section><!--/. videos-sec -->
+		</article><!--/.article-->
+		{% include 'partials/footer.html' %}
+	</main>
+<!-- Custom Script Include Here -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Banner Window Height
+		$('.banner-sec').css({'height': ($(window).height()) + 'px'});
+	});
+</script>
+{% endblock %}

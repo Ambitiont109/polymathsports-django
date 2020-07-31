@@ -1,0 +1,30 @@
+{% extends 'layout/base.html' %}
+{% load static%}
+{% block title %}
+<title>Polymath Sports :: Terms And Conditions </title>{% endblock %}
+{% block content %}
+<main class="st-wrapper">
+	{% include 'partials/main_header.html'%}
+		<article class="main-content">
+			<section class="usermodule-sec pt-5">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="inner-sec">
+								<div class="head-sec">
+									<h1 class="mb-3">Terms and condtions</h1>
+								</div>
+								<div class="body-sec">
+									<div class="text-wrap">
+											{{ terms }}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!--/.usermodule-sec-->
+		</article><!--/.article-->
+		{% include 'partials/footer.html' %}
+	</main>
+{% endblock %}

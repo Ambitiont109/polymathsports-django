@@ -1,0 +1,110 @@
+{% extends 'layout/base.html' %}
+{% load static%}
+{% block title %}
+<title>Polymath Sports :: Bet Calculator</title>
+{% endblock %}
+{% block content %}
+<main class="st-wrapper">
+	{% include 'partials/main_header.html'%}
+		<article class="main-content">
+			<section class="usermodule-sec">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="head-sec">
+								<h1 class="mb-0">Bet Calculators</h1>
+								<p class="text-center mb-5 mt-3">At Polymath Sports we use the Kelly Criterion in order to determine the proper size of our bets! Enter the information below and we will do the work in calculating exactly how much money you should risk on your next investment.</p>
+							</div>
+							<div class="outer-wrapper">
+								<div class="row">
+									<div class="col-lg-7 col-md-8 col-sm-12 col-12 m-auto">
+										<div class="inner-sec">
+											<div class="body-sec">
+												<form id="calculator" class="" name="calculator" method="POST" action="" enctype="multipart/form-data">
+													{% csrf_token %}
+													<div class="row">
+														<div class="col-lg-9 col-md-9 col-sm-12 col-12 m-auto">
+															<div class="form-group mb-4">
+																<select class="form-control" name="calculator" id="calculator">
+																	<option>Select Calculator</option>
+																	<option>Kelly Criterion</option>
+																	<option>Half Kelly Criterion</option>
+																	<option>Quarter Kelly Criterion</option>
+																</select>
+															</div>
+															<div class="form-group mb-4">
+																<select class="form-control" name="player_type" id="player_type">
+																	<option>Team Type</option>
+																	<option>Favorite</option>
+																	<option>Underdog</option>
+																</select>
+															</div>
+															<div class="form-group mb-4">
+																<input type="text" id="bankroll" class="form-control" name="bankroll" value="" placeholder="What is your bankroll? (500 for $500)">
+															</div>
+															<div class="form-group mb-4">
+																<input type="text" id="confidence" class="form-control" name="confidence" value="" placeholder="Confidence level? (0.6 for 60%)">
+															</div>
+															<div class="form-group mb-5">
+																<input type="text" id="moneylines" class="form-control" name="moneylines" value="" placeholder="What are the odds based on the moneyline? (140 for +140 or -140">
+															</div>
+															<div class="slider mb-5"></div>
+															<div class="form-group mb-5 text-center">
+																<input type="submit" class="btn btn-primary btn-st" value="Calculate Amount">
+															</div>
+															{% if bankroll %}
+																<p>Calculator: {{ calculator }}</p>
+																<p>Player Type: {{ player_type }}</p>
+																<p>Bankroll: {{ bankroll }}</p>
+																<p>Confidence Level: {{ confidence }}</p>
+																<p>Moneylines: {{ moneylines }}</p>
+															{% endif %}
+															<div class="total-value">
+																<span>${{ bet_size }}</span>
+															</div>
+															{% if kelly %}
+																<p>(Kelly ratio: {{ kelly }} of your bankroll)</p>
+															{% endif %}
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!--/.usermodule-sec-->
+		</article><!--/.article-->
+	{% include 'partials/footer.html' %}
+	</main>
+
+<!-- Custom Script Include Here -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Banner Window Height
+		$('.banner-sec').css({'height': ($(window).height()) + 'px'});
+		// Set Input Type Password To Input Type Text And Input Type Text To Password
+		$('.btn-default').click(function(){
+			if($('#password').prop('type')=='password'){
+				$('#password').prop('type','text');
+			}else{
+				$('#password').prop('type','password');
+			}
+
+		});
+		// jQuery UI Slider With Pips
+		$(".slider")               
+		.slider({ 
+			min: 0, 
+			max: 10, 
+		})               
+		.slider("pips", {
+		})               
+		.slider("float");
+		});
+</script>
+
+{% endblock %}

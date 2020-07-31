@@ -1,0 +1,15 @@
+<div class="col-lg-4 col-md-4 col-sm-12 col-12">
+    <div class="sidebar-menu">
+        <ul>
+            <li {% if active == '1' %}  class="active {% endif %}">
+                <a href="{% url 'make-models-step-1' predict=1 %}">Select Your Game(s)</a>
+            </li>
+            <li {% if active == '10' %}  class="active {% endif %}">
+                <a href="{% url 'select-ml-model' %}">Select Machine Learning Model</a>
+            </li>
+            <li {% if active == '11' %}  class="active {% endif %}">
+                <a href="{% url 'model-predictions' %}">Predictions</a>
+            </li>
+        </ul>
+    </div>
+</div>

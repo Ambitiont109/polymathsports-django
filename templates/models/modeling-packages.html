@@ -1,0 +1,150 @@
+{% extends 'layout/base.html' %}
+{% load static%}
+{% block title %}
+<title>Polymath Sports :: Modeling Packages </title>
+{% endblock %}
+{% block content %}
+<main class="st-wrapper">
+	{% include 'partials/main_header.html'%}
+		<article class="main-content">
+			<section class="usermodule-sec">
+				<div class="container align-top align-text-top">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="inner-sec">
+								<div class="head-sec">
+									<h1>Modeling Packages</h1>
+								</div>
+								{% include 'partials/messages.html' %}
+								<div class="body-sec">
+									<div class="row justify-content-center">
+										<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+											<div class="custom-radio">
+												<label class="radio-inline">
+												  <input type="radio" name="optradio" checked>
+												  <span class="custom-radio">
+													<div class="package-list">
+														<div class="header-sec">
+															<div class="inner-sec">
+																<a class="choose-plan-btn" href="{% url 'modelling_package' subscription=free_id  %} " ><h5>Free</h5></a>
+															</div>
+														</div>
+														<ul class="packages">
+															<li>Free</li>
+															<li>Create and save one predictive model to be applied to a single game per day</li>
+															<li>Utilize all predictor variables available to BASIC users</li>
+															<li>Utilize all algorithms available to BASIC users</li>
+															<li>Get your models predictions to your email</li>
+														</ul>
+														{% if plan == 'FREE' %}
+														<div class="bottom-btn text-center mb-4" not active>
+															<p class="choose-plan-btn">Your Current Plan</p>
+														</div>
+														{% else %}
+														<div class="bottom-btn text-center mb-4">
+															<a class="choose-plan-btn" href="{% url 'modelling_package' subscription=free_id %}" >Choose plan</a>
+															<!-- <p>You plan {{ user_data.subscription_id }}</p> -->
+														</div>
+														{% endif %}
+													</div>
+											</span>
+											</label>
+										   </div>
+										</div>
+										<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+											<div class="custom-radio">
+												<label class="radio-inline">
+												  <input type="radio" name="optradio">
+												  <span class="custom-radio">
+												
+													<div class="package-list">
+														<div class="header-sec">
+															<div class="inner-sec">
+																<a class="choose-plan-btn" href="{% url 'modelling_package' subscription=basic_id %}" ><h5>Basic</h5></a>
+															</div>
+														</div>
+														<ul class="packages">
+															<li>$25.00 / Week</li>
+															<li>Create and save unlimited predictive models to be applied to any game per day/week (depending on sport)</li>
+															<li>Utilize all predictor variables available to BASIC users (Non trending variables)</li>
+															<li>Utilize all algorithms available to BASIC users  (Logistic regression, Linear regression, SVM, Decision Tree)</li>
+															<li>Get your models predictions to your email</li>
+														</ul>
+														{% if plan == 'Basic Weekly' %}
+														<div class="bottom-btn text-center mb-4" not active>
+															<p class="choose-plan-btn">Your Current Plan</p>
+														</div>
+														{% else %}
+														<div class="bottom-btn text-center mb-4">
+															<a class="choose-plan-btn" href="{% url 'modelling_package' subscription=basic_id %}" >Choose plan</a>
+														</div>
+														{% endif %}
+													</div>
+											</span>
+											</label>
+										   </div>
+										</div>
+										
+										<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+											<div class="custom-radio">
+												<label class="radio-inline">
+												  <input type="radio" name="optradio" >
+												  <span class="custom-radio">
+												
+													<div class="package-list ">
+														<div class="header-sec">
+															<a class="choose-plan-btn" href="{% url 'modelling_package' subscription=vip_id %}" > <div class="inner-sec">
+																<h5>VIP</h5></a>
+															</div>
+														</div>
+														<ul class="packages">
+															<li>$75 / Month
+																<div class="container">
+																	$800 / Year
+																</div>
+															</li>
+															<li>Create and save unlimited predictive models to be applied to any game per day/week (depending on sport) after logging in</li>
+															<li>Utilize all predictor variables available to VIP users - (includes all trending variables)</li>
+															<li>Utilize all algorithms available to VIP users (All Basic algorithms, Neural Networks, Random Forest)</li>
+															<li>Access to the manipulate predictor variables/add cross validation step</li>
+															<li>Recieve our own model predictions via email</li>
+															<li>Recieve model evaluation metrics in email with your models predictions</li>
+															<li>Access to consultation sessions with our experts</li>
+															<li>Get your models predictions to your email</li>
+														</ul>
+														{% if plan == 'VIP Monthly' or plan == 'VIP Annual'%}
+														<div class="bottom-btn text-center mb-4" not active>
+															<p class="choose-plan-btn">Your Current Plan</p>
+														</div>
+														{% else %}
+														<div class="bottom-btn text-center mb-4">
+															<a class="choose-plan-btn" href="{% url 'modelling_package' subscription=vip_id %}" >Choose Monthly</a>
+															<span>/&nbsp;</span>
+															<a class="choose-plan-btn" href="{% url 'modelling_package' subscription=vip_ann_id %}" >Choose Annual</a>
+														</div>
+														{% endif %}
+													</div>
+											</span>
+											</label>
+										   </div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section><!--/.usermodule-sec-->
+		</article><!--/.article-->
+		{% include 'partials/footer.html' %}
+	</main>
+{% endblock %}
+{% block innerjs %}
+<script>
+$(document).ready(function(){
+  $(".package1").click(function(){
+    alert("The paragraph was clicked.");
+  });
+});
+</script>
+{% endblock %}
